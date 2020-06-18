@@ -152,8 +152,10 @@ console.log(friend.speak())
     - The constructor calls the parent constructor passing it what it needs.
     - The constructor should also initialize `specialty`, `favLanguage` and `catchPhrase` properties on the instance.
     - Instructor instances have the following methods:
-        + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
-        + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
+        + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}'
+         where subject is the param passed in.
+        + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a 
+        perfect score on {subject}'
 */
 class Instructor extends Lambdasian{
   constructor(attributes){
@@ -161,10 +163,26 @@ class Instructor extends Lambdasian{
     this.specialty = attributes.specialty;
     this.favLanguage = attributes.favLanguage;
     this.catchPhrase = attributes.catchPhrase;
-
   }
 
+
+demo(subject){
+  return `Today we are learning about ${subject}`
 }
+grade(student, subject){
+  return `${student.name} receives a perfect score on ${subject}`
+}
+}
+const professor = new Instructor({
+  name: 'Dr Watt',
+  age: 65,
+  location: 'Beaver Falls',
+  specialty: 'Reformed Theology',
+  favLanguage: 'Greek',
+  catchPhrase: 'I was walking around Walmart at 3:00 am...',
+});
+
+console.log(professor)
 
 /*
   TASK 5
@@ -181,10 +199,36 @@ class Instructor extends Lambdasian{
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+  constructor(attributes){
+    super(attributes);
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = attributes.favSubjects;
+  }
+listSubjects(){
+  return `Loving ${this.favSubjects}`;
 }
+PRAssignment(subject){
+  return `${this.name} has submitted a PR for ${subject}`;
+}
+sprintChallenge(subject){
+  return `${this.name} has begun sprint challenge on ${subject}`
+}
+}
+const senior = new Student({
+  name: 'Jake',
+  age: 16,
+  location: 'PA',
+  speciality: 'sailing',
+  favLanguage: 'Japanese',
+  catchPhrase: 'You dont say',
+  previousBackground: 'highschool prep',
+  className: 'Bradford HS',
+  favSubjects: 'CAD, coding, marching band'
+});
 
+console.log(senior.listSubjects())
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -198,9 +242,39 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+  constructor(attributes){
+    super(attributes);
+    this.gradClassName = attributes.gradClassName;
+    this.favInstructor = attributes.favInstructor;
+  }
+standUp(){
+  return `${this.name} announces to ${channel}, @channel standy times!`
 }
+debugsCode(){
+  return `${this.name} debugs ${student.name}'s code on ${subject}`
+}
+tester(){
+  return `${this.name} enjoyed working for ${this.favInstructor}`
+}
+}
+
+const manager = new ProjectManager({
+  name: 'Chris',
+  age: 58,
+  location: 'PA',
+  speciality: 'biking',
+  favLanguage: 'German',
+  catchPhrase: 'dont make me get the wooden spoon',
+  previousBackground: 'Alfred University',
+  className: 'CCHS',
+  favSubjects: 'match, engineering',
+  gradClassName: 'Civil Engineering',
+  favInstructor: 'Dr Curtis', 
+
+});
+
+console.log(manager.tester())
 
 /*
   STRETCH PROBLEM (no tests!)
